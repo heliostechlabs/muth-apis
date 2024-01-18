@@ -1,35 +1,26 @@
 <?php
 
-$curl = curl_init();
+$ch = curl_init();
 
-curl_setopt_array($curl, array(
-		CURLOPT_URL => 'https://middleware.muthoot.org:1880/Spice',
-		CURLOPT_RETURNTRANSFER => true,
-		CURLOPT_ENCODING => '',
-		CURLOPT_MAXREDIRS => 10,
-		CURLOPT_TIMEOUT => 0,
-		CURLOPT_FOLLOWLOCATION => true,
-		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-		CURLOPT_CUSTOMREQUEST => 'POST',
-		CURLOPT_POSTFIELDS =>'{ "mobile": "9560302445",
- "firstName" : "VINISH",
- "lastName" : "VIJAYAN",
- "email" : "",
- "pin" : 110019,
- "utm" : "SpiceMoney",
- "owner" : 1,
- "medium" : 246,
- "source" : 14,
- "leadcreatedbytype" : 3,
- "preferredChannel" : 2,
- "priority" : 5
-}',
-		CURLOPT_HTTPHEADER => array(
-				'Content-Type: application/json'
-		),
-));
+curl_setopt($ch, CURLOPT_URL, 'https://middleware.muthoot.org:1880/Spice');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, '{"mobile": "1234567890","firstName" : "test","lastName" : "eighteenjan","email" : "ankush.thakur@heliostechlabs.com","pin" : 174101,"utm" : "SpiceMoney","owner" : 1,"medium" : 246,"source" : 14,"leadcreatedbytype" : 3,"preferredChannel" : 2,"priority" : 5}');
 
-$response = curl_exec($curl);
+$headers = array();
+$headers[] = 'Owner: SpiceMoney';
+$headers[] = 'Content-Type: application/json';
+$headers[] = 'Owner: Default Value utm Dial a bank';
 
-curl_close($curl);
-echo $response;
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+$result = curl_exec($ch);
+
+if (curl_errno($ch)) {
+    echo 'Error:' . curl_error($ch);
+}
+
+curl_close($ch);
+
+echo $result;
+?>
