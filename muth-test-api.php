@@ -5,11 +5,11 @@ $ch = curl_init();
 
 
 
-$mobile = '9418628867';
-$first_name = 'Satnam';
-$last_name = 'Monjan';
-$email = 'satnam55@gmail.com';
-$pin = '160056';
+$mobile = '9418728867';
+$first_name = 'Satna';
+$last_name = 'Jan';
+$email = 'satjan55@gmail.com';
+$pin = '160057';
 
 curl_setopt($ch, CURLOPT_URL, 'https://middleware.muthoot.org:1880/Spice');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
